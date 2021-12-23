@@ -205,7 +205,7 @@ def handle_message(event):
                     "text": "經濟日報",
                     "weight": "bold",
                     "size": "sm",
-                    "wrap": true
+                    "wrap": True
                 },
                 {
                     "type": "box",
@@ -289,7 +289,7 @@ def handle_message(event):
                         {
                             "type": "text",
                             "text": "長榮",
-                            "wrap": true,
+                            "wrap": True,
                             "color": "#8c8c8c",
                             "size": "xs",
                             "flex": 5
