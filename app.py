@@ -219,7 +219,7 @@ def handle_message(event):
                         {
                             "type": "text",
                             "text": "長榮",
-                            "wrap": true,
+                            "wrap": True,
                             "color": "#8c8c8c",
                             "size": "xs",
                             "flex": 5
@@ -329,8 +329,8 @@ def handle_message(event):
             }
         ]
         }
-    #     )
-    #     line_bot_api.reply_message(event.reply_token, flex_message)
+        )
+        line_bot_api.reply_message(event.reply_token, flex_message)
 #主程式
 import os
 if __name__ == "__main__":
