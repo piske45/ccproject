@@ -71,37 +71,37 @@ def callback():
 #         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
 from linebot.models import FlexSendMessage
 
-top_five = {}
-headers = {
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'
-    }
+top_five = {"公司":"123", "怪人":"456"}
+# headers = {
+#     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'
+#     }
 
-resp = requests.get('https://goodinfo.tw/StockInfo/StockList.asp?MARKET_CAT=%E7%86%B1%E9%96%80%E6%8E%92%E8%A1%8C&INDUSTRY_CAT=%E5%B9%B3%E5%9D%87%E6%8C%AF%E5%B9%85+%28%E4%BB%8A%E5%B9%B4%29%40%40%E5%B9%B3%E5%9D%87%E6%8C%AF%E5%B9%85%40%40%E4%BB%8A%E5%B9%B4&SHEET=%E6%BC%B2%E8%B7%8C%E5%8F%8A%E6%88%90%E4%BA%A4%E7%B5%B1%E8%A8%88&SHEET2=%E5%90%84%E6%9C%9F%E5%B9%B3%E5%9D%87%E6%8C%AF%E5%B9%85%E7%B5%B1%E8%A8%88', headers = headers)
+# resp = requests.get('https://goodinfo.tw/StockInfo/StockList.asp?MARKET_CAT=%E7%86%B1%E9%96%80%E6%8E%92%E8%A1%8C&INDUSTRY_CAT=%E5%B9%B3%E5%9D%87%E6%8C%AF%E5%B9%85+%28%E4%BB%8A%E5%B9%B4%29%40%40%E5%B9%B3%E5%9D%87%E6%8C%AF%E5%B9%85%40%40%E4%BB%8A%E5%B9%B4&SHEET=%E6%BC%B2%E8%B7%8C%E5%8F%8A%E6%88%90%E4%BA%A4%E7%B5%B1%E8%A8%88&SHEET2=%E5%90%84%E6%9C%9F%E5%B9%B3%E5%9D%87%E6%8C%AF%E5%B9%85%E7%B5%B1%E8%A8%88', headers = headers)
 
-    #將亂碼轉碼
-resp.encoding = 'utf - 8'
-soup = BeautifulSoup(resp.text, 'lxml')
+#     #將亂碼轉碼
+# resp.encoding = 'utf - 8'
+# soup = BeautifulSoup(resp.text, 'lxml')
 
-    #數據被放在txtStockListData裡面
-data = soup.select_one('#txtStockListData')
-dfs = pandas.read_html(data.prettify())
+#     #數據被放在txtStockListData裡面
+# data = soup.select_one('#txtStockListData')
+# dfs = pandas.read_html(data.prettify())
 
-num = list(dfs[2][:5]['代號'])
-name = list(dfs[2][:5]['名稱'])
-data3 = dfs[1][:5]
-amplitude = list(data3.loc[:5]['3日  平均  振幅'])
+# num = list(dfs[2][:5]['代號'])
+# name = list(dfs[2][:5]['名稱'])
+# data3 = dfs[1][:5]
+# amplitude = list(data3.loc[:5]['3日  平均  振幅'])
 
-    #創建dataframe資料庫
-data2 = pandas.DataFrame({
-        "代號" : num,
-        "名稱" : name,
-        "平均三日振幅": amplitude}, 
-    index = ['1', '2', '3', '4', '5'])
-for i in range(1,6):
-    top_five[i] = num+name
+#     #創建dataframe資料庫
+# data2 = pandas.DataFrame({
+#         "代號" : num,
+#         "名稱" : name,
+#         "平均三日振幅": amplitude}, 
+#     index = ['1', '2', '3', '4', '5'])
+# for i in range(1,6):
+#     top_five[i] = num+name
 
-print(data2)
-print(top_five)
+# print(data2)
+# print(top_five)
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -110,14 +110,14 @@ def handle_message(event):
     # if event.message.text[:2].upper() == "#K":
     #     input_word = event.message.text.replace(" ","") #合併字串取消空白
     #     stock_name = input_word[2:6] #0050
-    #     start_date = input_word[6:] #2020-01-01
-    #     content = plot_stcok_k_chart(IMGUR_CLIENT_ID,stock_name,start_date)
+        # start_date = input_word[6:] #2020-01-01
+        # content = plot_stcok_k_chart(IMGUR_CLIENT_ID,stock_name,start_date)
         company_name = input()
         flex_message = FlexSendMessage(
             alt_text = f'{company_name}相關新聞' #alt_text
             contents={
-        "type": "carousel",
-        "contents": {"type": "bubble",
+            "type": "carousel",
+            "contents": {"type": "bubble",
             "size": "micro",
             "hero": {
                 "type": "image",
@@ -328,8 +328,7 @@ def handle_message(event):
             }
             }
         ]
-        }
-        )
+        })
         line_bot_api.reply_message(event.reply_token, flex_message)
 #主程式
 import os
