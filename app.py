@@ -10,9 +10,9 @@ Line Bot聊天機器人
 快速回復QuickReply
 """
 #載入LineBot所需要的套件
-# from flask import Flask, request, abort
+from flask import Flask, request, abort
 import pandas 
-import requests
+# import requests
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -21,7 +21,7 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 import re
-# app = Flask(__name__)
+app = Flask(__name__)
 
 # 必須放上自己的Channel Access Token
 line_bot_api = LineBotApi('OxsptkqLALtCQH+hhPm+6an0EMha/JuvKM2Lx/e8jcLRsQmIz96qzPF7WgShwBhrWOLwDbmcjanacZ/SrtpbPDvXsBuAnXQvgtQh7O1IMUQgHv0x3pDbM3d05QvAsnQAKS7UmZhmd7JtrFA0uKA6OwdB04t89/1O/w1cDnyilFU=')
@@ -34,10 +34,10 @@ line_bot_api.push_message('Ua59fcce6ed5bf04270711fb56e4d8e5f', TextSendMessage(t
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
-    signature = requests.headers['X-Line-Signature']
+    signature = request.headers['X-Line-Signature']
 
     # get request body as text
-    body = requests.get_data(as_text=True)
+    body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
 
     # handle webhook body
