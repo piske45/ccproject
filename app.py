@@ -6,8 +6,8 @@ Created on Wed Jun  2 21:16:35 2021
 版權屬於「行銷搬進大程式」所有，若有疑問，可聯絡ivanyang0606@gmail.com
 
 Line Bot聊天機器人
-第三章 互動回傳功能
-推播push_message與回覆reply_message
+第四章 選單功能
+快速回復QuickReply
 """
 #載入LineBot所需要的套件
 from flask import Flask, request, abort
@@ -51,11 +51,49 @@ def callback():
 ##### 基本上程式編輯都在這個function #####
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = event.message.text
+    message = text=event.message.text
     if re.match('告訴我秘密',message):
-        line_bot_api.reply_message(event.reply_token,TextSendMessage('才不告訴你哩！'))
+        flex_message = TextSendMessage(text='以下有雷，請小心',
+                               quick_reply=QuickReply(items=[
+                                   QuickReplyButton(action=MessageAction(label="按我", text="按！")),
+                                   QuickReplyButton(action=MessageAction(label="按我", text="按！")),
+                                   QuickReplyButton(action=MessageAction(label="按我", text="按！")),
+                                   QuickReplyButton(action=MessageAction(label="別按我", text="你按屁喔！爆炸了拉！！")),
+                                   QuickReplyButton(action=MessageAction(label="按我", text="按！")),
+                                   QuickReplyButton(action=MessageAction(label="按我", text="按！")),
+                                   QuickReplyButton(action=MessageAction(label="按我", text="按！")),
+                                   QuickReplyButton(action=MessageAction(label="按我", text="按！")),
+                                   QuickReplyButton(action=MessageAction(label="按我", text="按！"))
+                               ]))
+        line_bot_api.reply_message(event.reply_token, flex_message)
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
+    from linebot.models import FlexSendMessage
+
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    if event.message.text[:2].upper() == "#K":
+        input_word = event.message.text.replace(" ","") #合併字串取消空白
+        stock_name = input_word[2:6] #0050
+        start_date = input_word[6:] #2020-01-01
+        content = plot_stcok_k_chart(IMGUR_CLIENT_ID,stock_name,start_date)
+
+        flex_message = FlexSendMessage(
+            alt_text=stock_name, #alt_text
+            contents={
+                'type': 'bubble',
+                'direction': 'ltr',
+                'hero': {
+                    'type': 'image',
+                    'url': content,
+                    'size': 'full',
+                    'aspectRatio': '20:13',
+                    'aspectMode': 'cover',
+                    'action': { 'type': 'uri', 'uri': content, 'label': 'label' }
+                }
+            }
+        )
+        line_bot_api.reply_message(event.reply_token, flex_message)
 #主程式
 import os
 if __name__ == "__main__":
