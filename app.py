@@ -296,7 +296,8 @@ def handle_message(event):
                 }
             ]
         }
-        flex_message = FlexSendMessage(alt_text = f'{company_name}相關新聞', #alt_text
+        flex_message = TemplateSendMessage(alt_text = f'{company_name}相關新聞',
+        template=CarouselTemplate, #alt_text
             contents= content
         )
         line_bot_api.reply_message(event.reply_token, flex_message)
