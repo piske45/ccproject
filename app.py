@@ -113,222 +113,226 @@ def handle_message(event):
         # start_date = input_word[6:] #2020-01-01
         # content = plot_stcok_k_chart(IMGUR_CLIENT_ID,stock_name,start_date)
         company_name = input()
-        flex_message = FlexSendMessage(
-            alt_text = f'{company_name}相關新聞' #alt_text
-            contents={
-            "type": "carousel",
-            "contents": {"type": "bubble",
-            "size": "micro",
-            "hero": {
-                "type": "image",
-                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
-                "size": "full",
-                "aspectMode": "cover",
-                "aspectRatio": "320:213"
-            },
-            "body": {
+        content = {
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "size": "micro",
+      "hero": {
+        "type": "image",
+        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
+        "size": "full",
+        "aspectMode": "cover",
+        "aspectRatio": "320:213"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "中國時報",
+            "weight": "bold",
+            "size": "sm",
+            "wrap": True
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
                 "type": "box",
-                "layout": "vertical",
-                "contents": [
-                {
-                    "type": "text",
-                    "text": "中國時報",
-                    "weight": "bold",
-                    "size": "sm",
-                    "wrap": True
-                },
-                {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                    {
-                        "type": "box",
-                        "layout": "baseline",
-                        "spacing": "sm",
-                        "contents": [
-                        {
-                            "type": "text",
-                            "text": "長榮",
-                            "wrap": True,
-                            "color": "#8c8c8c",
-                            "size": "xs",
-                            "flex": 5
-                        }
-                        ]
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "uri",
-                        "label": "news1",
-                        "uri": "http://linecorp.com/"
-                        }
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "uri",
-                        "label": "news2",
-                        "uri": "http://linecorp.com/"
-                        }
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "uri",
-                        "label": "more",
-                        "uri": "http://linecorp.com/"
-                        }
-                    }
-                    ]
-                }
-                ],
+                "layout": "baseline",
                 "spacing": "sm",
-                "paddingAll": "13px"
-            }
-            },
-            {"type": "bubble",
-            "size": "micro",
-            "hero": {
-                "type": "image",
-                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip11.jpg",
-                "size": "full",
-                "aspectMode": "cover",
-                "aspectRatio": "320:213"
-            },
-            "body": {
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "長榮",
+                    "wrap": True,
+                    "color": "#8c8c8c",
+                    "size": "xs",
+                    "flex": 5
+                  }
+                ]
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "news1",
+                  "uri": "http://linecorp.com/"
+                }
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "news2",
+                  "uri": "http://linecorp.com/"
+                }
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "more",
+                  "uri": "http://linecorp.com/"
+                }
+              }
+            ]
+          }
+        ],
+        "spacing": "sm",
+        "paddingAll": "13px"
+      }
+    },
+    {
+      "type": "bubble",
+      "size": "micro",
+      "hero": {
+        "type": "image",
+        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip11.jpg",
+        "size": "full",
+        "aspectMode": "cover",
+        "aspectRatio": "320:213"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "經濟日報",
+            "weight": "bold",
+            "size": "sm",
+            "wrap": True
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
                 "type": "box",
-                "layout": "vertical",
-                "contents": [
-                {
-                    "type": "text",
-                    "text": "經濟日報",
-                    "weight": "bold",
-                    "size": "sm",
-                    "wrap": True
-                },
-                {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                    {
-                        "type": "box",
-                        "layout": "baseline",
-                        "spacing": "sm",
-                        "contents": [
-                        {
-                            "type": "text",
-                            "text": "長榮",
-                            "wrap": True,
-                            "color": "#8c8c8c",
-                            "size": "xs",
-                            "flex": 5
-                        }
-                        ]
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "uri",
-                        "label": "news1",
-                        "uri": "http://linecorp.com/"
-                        }
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "uri",
-                        "label": "news2",
-                        "uri": "http://linecorp.com/"
-                        }
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "uri",
-                        "label": "more",
-                        "uri": "http://linecorp.com/"
-                        }
-                    }
-                    ]
-                }
-                ],
+                "layout": "baseline",
                 "spacing": "sm",
-                "paddingAll": "13px"
-            }
-            },
-            {
-            "type": "bubble",
-            "size": "micro",
-            "hero": {
-                "type": "image",
-                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip12.jpg",
-                "size": "full",
-                "aspectMode": "cover",
-                "aspectRatio": "320:213"
-            },
-            "body": {
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "長榮",
+                    "wrap": True,
+                    "color": "#8c8c8c",
+                    "size": "xs",
+                    "flex": 5
+                  }
+                ]
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "news1",
+                  "uri": "http://linecorp.com/"
+                }
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "news2",
+                  "uri": "http://linecorp.com/"
+                }
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "more",
+                  "uri": "http://linecorp.com/"
+                }
+              }
+            ]
+          }
+        ],
+        "spacing": "sm",
+        "paddingAll": "13px"
+      }
+    },
+    {
+      "type": "bubble",
+      "size": "micro",
+      "hero": {
+        "type": "image",
+        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip12.jpg",
+        "size": "full",
+        "aspectMode": "cover",
+        "aspectRatio": "320:213"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Ettoday",
+            "weight": "bold",
+            "size": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
                 "type": "box",
-                "layout": "vertical",
-                "contents": [
-                {
-                    "type": "text",
-                    "text": "Ettoday",
-                    "weight": "bold",
-                    "size": "sm"
-                },
-                {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                    {
-                        "type": "box",
-                        "layout": "baseline",
-                        "spacing": "sm",
-                        "contents": [
-                        {
-                            "type": "text",
-                            "text": "長榮",
-                            "wrap": True,
-                            "color": "#8c8c8c",
-                            "size": "xs",
-                            "flex": 5
-                        }
-                        ]
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "uri",
-                        "label": "news1",
-                        "uri": "http://linecorp.com/"
-                        }
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "uri",
-                        "label": "news2",
-                        "uri": "http://linecorp.com/"
-                        }
-                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "uri",
-                        "label": "more",
-                        "uri": "http://linecorp.com/"
-                        }
-                    }
-                    ]
-                }
-                ],
+                "layout": "baseline",
                 "spacing": "sm",
-                "paddingAll": "13px"
-            }
-            }
-        ]
-        })
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "長榮",
+                    "wrap": True,
+                    "color": "#8c8c8c",
+                    "size": "xs",
+                    "flex": 5
+                  }
+                ]
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "news1",
+                  "uri": "http://linecorp.com/"
+                }
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "news2",
+                  "uri": "http://linecorp.com/"
+                }
+              },
+              {
+                "type": "button",
+                "action": {
+                  "type": "uri",
+                  "label": "more",
+                  "uri": "http://linecorp.com/"
+                }
+              }
+            ]
+          }
+        ],
+        "spacing": "sm",
+        "paddingAll": "13px"
+      }
+    }
+  ]
+}
+        flex_message = FlexSendMessage(alt_text = f'{company_name}相關新聞', #alt_text
+            contents= content
+        )
         line_bot_api.reply_message(event.reply_token, flex_message)
 #主程式
 import os
