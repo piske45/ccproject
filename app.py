@@ -79,8 +79,8 @@ def handle_message(event):
     top_five = {"公司":"123", "怪人":"456"}
     message = text = event.message.text
     if event.message.text in top_five:
-        company_name = input()
-        columns = { "type": "carousel",
+        
+        Content = { "type": "carousel",
                     "contents": [
                      {
                         "type": "bubble",
@@ -298,7 +298,7 @@ def handle_message(event):
         }
         flex_message = TemplateSendMessage(alt_text = f'{company_name}相關新聞',
         template=CarouselTemplate, #alt_text
-            contents= content
+        columns = Content
         )
         line_bot_api.reply_message(event.reply_token, flex_message)
     else:
