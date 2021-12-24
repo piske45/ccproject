@@ -79,224 +79,107 @@ from linebot.models import TemplateSendMessage
 def handle_message(event):
     top_five = {"公司":"123", "怪人":"456"}
     message = text = event.message.text
+    company_name = input()
     if event.message.text in top_five:
         
-        Content = { "type": "carousel",
-                    "contents": [
-                     {
-                        "type": "bubble",
-                        "size": "micro",
-                        "hero": {
-                            "type": "image",
-                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip10.jpg",
-                            "size": "full",
-                            "aspectMode": "cover",
-                            "aspectRatio": "320:213"
-                             },
-                            "body": {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "contents": [
-                                    {
-                                    "type": "text",
-                                    "text": "中國時報",
-                                    "weight": "bold",
-                                    "size": "sm",
-                                    "wrap": True
-                                    },
-                                    {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "contents": [
-                                    {
-                                    "type": "box",
-                                    "layout": "baseline",
-                                    "spacing": "sm",
-                                    "contents": [
-                                    {
-                                    "type": "text",
-                                    "text": "長榮",
-                                    "wrap": True,
-                                    "color": "#8c8c8c",
-                                    "size": "xs",
-                                    "flex": 5
-                                    }
-                                    ]
-                                    },
-                    {
-                        "type": "button",
-                        "action": {
-                        "type": "uri",
-                        "label": "news1",
-                        "uri": "http://linecorp.com/"
-                        }
-                    },
-              {
-                "type": "button",
-                "action": {
-                  "type": "uri",
-                  "label": "news2",
-                  "uri": "http://linecorp.com/"
-                }
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "uri",
-                  "label": "more",
-                  "uri": "http://linecorp.com/"
-                }
-              }
-            ]
-          }
-        ],
-        "spacing": "sm",
-        "paddingAll": "13px"
-      }
-    },
-    {
-      "type": "bubble",
-      "size": "micro",
-      "hero": {
-        "type": "image",
-        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip11.jpg",
-        "size": "full",
-        "aspectMode": "cover",
-        "aspectRatio": "320:213"
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
+        Content = {
+  "type": "template",
+  "altText": "this is a carousel template",
+  "template": {
+    "type": "carousel",
+    "columns": [
+      {
+        "thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg",
+        "title": "經濟日報",
+        "text": "今日焦點",
+        "actions": [
           {
-            "type": "text",
-            "text": "經濟日報",
-            "weight": "bold",
-            "size": "sm",
-            "wrap": True
+            "type": "uri",
+            "label": "第一篇",
+            "uri": "https://wantrich.chinatimes.com/"
           },
           {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "baseline",
-                "spacing": "sm",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "長榮",
-                    "wrap": True,
-                    "color": "#8c8c8c",
-                    "size": "xs",
-                    "flex": 5
-                  }
-                ]
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "uri",
-                  "label": "news1",
-                  "uri": "http://linecorp.com/"
-                }
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "uri",
-                  "label": "news2",
-                  "uri": "http://linecorp.com/"
-                }
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "uri",
-                  "label": "more",
-                  "uri": "http://linecorp.com/"
-                }
-              }
-            ]
-          }
-        ],
-        "spacing": "sm",
-        "paddingAll": "13px"
-      }
-    },
-    {
-      "type": "bubble",
-      "size": "micro",
-      "hero": {
-        "type": "image",
-        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip12.jpg",
-        "size": "full",
-        "aspectMode": "cover",
-        "aspectRatio": "320:213"
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "Ettoday",
-            "weight": "bold",
-            "size": "sm"
+            "type": "uri",
+            "label": "第二篇",
+            "uri": "https://wantrich.chinatimes.com/"
           },
           {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "baseline",
-                "spacing": "sm",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "長榮",
-                    "wrap": True,
-                    "color": "#8c8c8c",
-                    "size": "xs",
-                    "flex": 5
-                  }
-                ]
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "uri",
-                  "label": "news1",
-                  "uri": "http://linecorp.com/"
-                }
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "uri",
-                  "label": "news2",
-                  "uri": "http://linecorp.com/"
-                }
-              },
-              {
-                "type": "button",
-                "action": {
-                  "type": "uri",
-                  "label": "more",
-                  "uri": "http://linecorp.com/"
-                }
-              }
-            ]
+            "type": "uri",
+            "label": "更多新聞",
+            "uri": "https://wantrich.chinatimes.com/"
           }
         ],
-        "spacing": "sm",
-        "paddingAll": "13px"
-                    }
-                }
-            ]
-        }
+        "imageBackgroundColor": "#895151"
+      },
+      {
+        "thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg",
+        "title": "中時新聞",
+        "text": "今日焦點",
+        "actions": [
+          {
+            "type": "message",
+            "label": "動作我今天天氣很好好好好好好好襖好好好好",
+            "text": "動作 1"
+          },
+          {
+            "type": "message",
+            "label": "動作 2",
+            "text": "動作 2"
+          },
+          {
+            "type": "message",
+            "label": "動作 3",
+            "text": "動作 3"
+          }
+        ]
+      },
+      {
+        "thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg",
+        "title": "ETtoday",
+        "text": "今日焦點新聞",
+        "actions": [
+          {
+            "type": "uri",
+            "label": "動作 1",
+            "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
+          },
+          {
+            "type": "uri",
+            "label": "動作 2",
+            "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
+          },
+          {
+            "type": "uri",
+            "label": "動作 3",
+            "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
+          }
+        ]
+      },
+      {
+        "thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg",
+        "title": "聚亨",
+        "text": "今日焦點新聞",
+        "actions": [
+          {
+            "type": "uri",
+            "label": "動作 1",
+            "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
+          },
+          {
+            "type": "uri",
+            "label": "動作 2",
+            "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
+          },
+          {
+            "type": "uri",
+            "label": "動作 3",
+            "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
+          }
+        ]
+      }
+    ]
+  }
+}
         flex_message = TemplateSendMessage(alt_text = f'{company_name}相關新聞',
         template=CarouselTemplate, #alt_text
         columns = Content
