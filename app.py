@@ -80,7 +80,7 @@ def handle_message(event):
     message = text = event.message.text
     if event.message.text in top_five:
         company_name = input()
-        content = { "type": "carousel",
+        columns = { "type": "carousel",
                     "contents": [
                      {
                         "type": "bubble",
@@ -301,6 +301,8 @@ def handle_message(event):
             contents= content
         )
         line_bot_api.reply_message(event.reply_token, flex_message)
+    else:
+        line_bot_api.reply_message(event.reply_token, message)
 
 #主程式
 import os
