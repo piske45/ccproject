@@ -70,6 +70,7 @@ def callback():
 #     else:
 #         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
 from linebot.models import FlexSendMessage
+from linebot.models import TemplateSendMessage
 
 
 
