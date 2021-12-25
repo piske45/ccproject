@@ -51,132 +51,117 @@ def handle_message(event):
     if re.match('前五大', message):
         replymessage = top_five_pawn 
         line_bot_api.reply_message(event.reply_token, TextSendMessage(replymessage))
+    elif message in top_five:
+        rep = 'ko'
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(rep))
     else:
         error_message = '不好意思'
-        # line_bot_api.reply_message(event.reply_token, TextSendMessage(error_message))
-        if message in top_five:
-            rep = 'ko'
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(rep))
-        else:
-            # line_bot_api.reply_message(event.reply_tolen, TextSendMessage(error_message))
-            flex_message = FlexSendMessage(
-                alt_text = '新聞',
-                contents = {
-                "type": "template",
-                "altText": "this is a carousel template",
-                "template": {
-                    "type": "carousel",
-                    "columns": [
-                    {
-                        "thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg",
-                        "title": "經濟日報",
-                        "text": "今日焦點",
-                        "actions": [
-                        {
-                            "type": "uri",
-                            "label": "第一篇",
-                            "uri": "https://wantrich.chinatimes.com/"
-                        },
-                        {
-                            "type": "uri",
-                            "label": "第二篇",
-                            "uri": "https://wantrich.chinatimes.com/"
-                        },
-                        {
-                            "type": "uri",
-                            "label": "更多新聞",
-                            "uri": "https://wantrich.chinatimes.com/"
-                        }
-                        ],
-                        "imageBackgroundColor": "#FFFFFF"
-                    },
-                    {
-                        "thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg",
-                        "title": "中時新聞",
-                        "text": "今日焦點",
-                        "actions": [
-                        {
-                            "type": "message",
-                            "label": "動作我今天天氣很好好好好好好好襖好好好好",
-                            "text": "動作 1"
-                        },
-                        {
-                            "type": "message",
-                            "label": "動作 2",
-                            "text": "動作 2"
-                        },
-                        {
-                            "type": "message",
-                            "label": "動作 3",
-                            "text": "動作 3"
-                        }
-                        ]
-                    },
-                    {
-                        "thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg",
-                        "title": "ETtoday",
-                        "text": "今日焦點新聞",
-                        "actions": [
-                        {
-                            "type": "uri",
-                            "label": "動作 1",
-                            "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
-                        },
-                        {
-                            "type": "uri",
-                            "label": "動作 2",
-                            "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
-                        },
-                        {
-                            "type": "uri",
-                            "label": "動作 3",
-                            "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
-                        }
-                        ]
-                    },
-                    {
-                        "thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg",
-                        "title": "聚亨",
-                        "text": "今日焦點新聞",
-                        "actions": [
-                        {
-                            "type": "uri",
-                            "label": "動作 1",
-                            "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
-                        },
-                        {
-                            "type": "uri",
-                            "label": "動作 2",
-                            "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
-                        },
-                        {
-                            "type": "uri",
-                            "label": "動作 3",
-                            "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
-                        }
-                        ]
+        line_bot_api.reply_message(event.reply_tolen, TextSendMessage(error_message))
+            # 
+            # line_bot_api.reply_message(event.reply_token, flex_message)    
+    #推播新聞
+    if re.match('新聞', message):
+        flex_message = FlexSendMessage(
+            alt_text = '新聞'
+            contents =  {"type": "template",
+            "altText": "this is a carousel template",
+            "template": {
+            "type": "carousel",
+            "columns": [
+            {
+                "thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg",
+                "title": "經濟日報",
+                "text": "今日焦點",
+                "actions": [
+                {
+                    "type": "uri",
+                    "label": "第一篇",
+                    "uri": "https://wantrich.chinatimes.com/"
+                },
+                {
+                    "type": "uri",
+                    "label": "第二篇",
+                    "uri": "https://wantrich.chinatimes.com/"
+                },
+                {
+                    "type": "uri",
+                    "label": "更多新聞",
+                    "uri": "https://wantrich.chinatimes.com/"
+                }
+                ],
+                "imageBackgroundColor": "#FFFFFF"
+            },
+            {
+                "thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg",
+                "title": "中時新聞",
+                "text": "今日焦點",
+                "actions": [
+                {
+                    "type": "message",
+                    "label": "動作我今天天氣很好好好好好好好襖好好好好",
+                    "text": "動作 1"
+                },
+                {
+                    "type": "message",
+                    "label": "動作 2",
+                    "text": "動作 2"
+                },
+                {
+                    "type": "message",
+                    "label": "動作 3",
+                    "text": "動作 3"
+                }
+                ]
+            },
+            {
+                "thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg",
+                "title": "ETtoday",
+                "text": "今日焦點新聞",
+                "actions": [
+                {
+                    "type": "uri",
+                    "label": "動作 1",
+                    "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
+                },
+                {
+                    "type": "uri",
+                    "label": "動作 2",
+                    "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
+                },
+                {
+                    "type": "uri",
+                    "label": "動作 3",
+                    "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
+                }
+                ]
+            },
+            {
+                "thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg",
+                "title": "聚亨",
+                "text": "今日焦點新聞",
+                "actions": [
+                {
+                    "type": "uri",
+                    "label": "動作 1",
+                    "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
+                },
+                {
+                    "type": "uri",
+                    "label": "動作 2",
+                    "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
+                },
+                {
+                    "type": "uri",
+                    "label": "動作 3",
+                    "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"
                     }
                     ]
                 }
-                }
+                ]
+            }   
+            }
             )
-            line_bot_api.reply_message(event.reply_token, flex_message)    
-    #推播新聞
-    #if re.match('新聞', message):
-
-
-    # top_five = {"公司":"123", "怪人":"456"}
-    # # message = text = event.message.text
-    # company_name = input()
-    # # if event.message.text in top_five:
-    
-    #     # flex_message = TemplateSendMessage(alt_text = f'{company_name}相關新聞',
-    #     # template=CarouselTemplate, #alt_text
-    #     # columns = Content
-    #     # )
-        
-    
-    # line_bot_api.reply_message(event.reply_token, TextSendMessage(text = event.message.text))
+        line_bot_api.reply_message(event.reply_token, flex_message)
 
 #主程式
 import os
