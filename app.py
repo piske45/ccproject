@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #載入LineBot所需要的套件
+from typing import Text
 from flask import Flask, request, abort
 # import requests
 from linebot import LineBotApi, WebhookHandler
@@ -52,10 +53,12 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(replymessage))
     else:
         error_message = '不好意思'
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(error_message))
+        # line_bot_api.reply_message(event.reply_token, TextSendMessage(error_message))
         if message in fruit:
             rep = 'ko'
             line_bot_api.reply_message(event.reply_token, TextSendMessage(rep))
+        else:
+            line_bot_api.reply_message(event.reply_tolen, TextSendMessage(error_message))
     #推播新聞
     #if re.match('新聞', message):
 
