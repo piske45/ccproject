@@ -47,12 +47,19 @@ from linebot.models import TemplateSendMessage
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = text = event.message.text
+    #推播前五大當沖股
     top_five = "apple"
     if re.match('前五大', message):
         replymessage = top_five 
         line_bot_api.reply_message(event.reply_token, TextSendMessage(replymessage))
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
+        error_message = '不好意思'
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(error_message))
+    
+    #推播新聞
+    #if re.match('新聞', message):
+
+
     # top_five = {"公司":"123", "怪人":"456"}
     # # message = text = event.message.text
     # company_name = input()
