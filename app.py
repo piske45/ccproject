@@ -10,6 +10,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 import re
+import json
 
 app = Flask(__name__)
 
@@ -61,10 +62,7 @@ def handle_message(event):
             # line_bot_api.reply_message(event.reply_token, flex_message)    
     #推播新聞
     if re.match('新聞', message):
-        flex_message = FlexSendMessage(
-            alt_text = '新聞',
-            contents =  {"type": "template", "altText": "this is a carousel template", "template": {"type": "carousel", "columns": [{"thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg", "title": "\u7d93\u6fdf\u65e5\u5831", "text": "\u4eca\u65e5\u7126\u9ede", "actions": [{"type": "uri", "label": "\u7b2c\u4e00\u7bc7", "uri": "https://wantrich.chinatimes.com/"}, {"type": "uri", "label": "\u7b2c\u4e8c\u7bc7", "uri": "https://wantrich.chinatimes.com/"}, {"type": "uri", "label": "\u66f4\u591a\u65b0\u805e", "uri": "https://wantrich.chinatimes.com/"}], "imageBackgroundColor": "#FFFFFF"}, {"thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg", "title": "\u4e2d\u6642\u65b0\u805e", "text": "\u4eca\u65e5\u7126\u9ede", "actions": [{"type": "message", "label": "\u52d5\u4f5c\u6211\u4eca\u5929\u5929\u6c23\u5f88\u597d\u597d\u597d\u597d\u597d\u597d\u597d\u8956\u597d\u597d\u597d\u597d", "text": "\u52d5\u4f5c 1"}, {"type": "message", "label": "\u52d5\u4f5c 2", "text": "\u52d5\u4f5c 2"}, {"type": "message", "label": "\u52d5\u4f5c 3", "text": "\u52d5\u4f5c 3"}]}, {"thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg", "title": "ETtoday", "text": "\u4eca\u65e5\u7126\u9ede\u65b0\u805e", "actions": [{"type": "uri", "label": "\u52d5\u4f5c 1", "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"}, {"type": "uri", "label": "\u52d5\u4f5c 2", "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"}, {"type": "uri", "label": "\u52d5\u4f5c 3", "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"}]}, {"thumbnailImageUrl": "https://images.chinatimes.com/newsphoto/2021-12-22/1024/20211222004875.jpg", "title": "\u805a\u4ea8", "text": "\u4eca\u65e5\u7126\u9ede\u65b0\u805e", "actions": [{"type": "uri", "label": "\u52d5\u4f5c 1", "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"}, {"type": "uri", "label": "\u52d5\u4f5c 2", "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"}, {"type": "uri", "label": "\u52d5\u4f5c 3", "uri": "https://taichunmin.idv.tw/blog/2020-04-06-line-devbot.html"}]}]}}
-            )
+        flex_message = json.load(open('style.json', 'r', encoding= 'utf-8'))
         line_bot_api.reply_message(event.reply_token, flex_message)
 
 #主程式
