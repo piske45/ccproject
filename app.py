@@ -48,11 +48,11 @@ from linebot.models import TemplateSendMessage
 def handle_message(event):
     message = text = event.message.text
     if event.message.text == '前五大':
-        message = 'apple'
-        line_bot_api.reply_message(event.reply_token, message)
+        replymessage = 'apple'
+        line_bot_api.reply_message(event.reply_token, replymessage)
     else:
-        message = "orange"
-        line_bot_api.reply_message(event.reply_token, message)
+        replymessage = "orange"
+        line_bot_api.reply_message(event.reply_token, replymessage)
     # top_five = {"公司":"123", "怪人":"456"}
     # # message = text = event.message.text
     # company_name = input()
