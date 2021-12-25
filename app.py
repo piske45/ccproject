@@ -47,9 +47,9 @@ def handle_message(event):
     message = text = event.message.text
     top_five = {"aple": '20', 'orange': "30"}
     #推播前五大當沖股
-    top_five = "apple"
+    top_five_pawn = "apple"
     if re.match('前五大', message):
-        replymessage = top_five 
+        replymessage = top_five_pawn 
         line_bot_api.reply_message(event.reply_token, TextSendMessage(replymessage))
     else:
         error_message = '不好意思'
@@ -59,7 +59,9 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, TextSendMessage(rep))
         else:
             # line_bot_api.reply_message(event.reply_tolen, TextSendMessage(error_message))
-            flex_message = {
+            flex_message = FlexSendMessage(
+                alt_text = '新聞',
+                contents = {
                 "type": "template",
                 "altText": "this is a carousel template",
                 "template": {
@@ -157,6 +159,7 @@ def handle_message(event):
                     ]
                 }
                 }
+            )
             line_bot_api.reply_message(event.reply_token, flex_message)    
     #推播新聞
     #if re.match('新聞', message):
