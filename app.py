@@ -47,8 +47,15 @@ from linebot.models import TemplateSendMessage
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = text = event.message.text
+    top_five = "代號   名稱 平均三日振幅
+1  6485   點序   3.07
+2  3169   亞信   4.42
+3  2615   萬海   4.31
+4  2609   陽明   2.98
+5  5608  四維航   3.59"
+
     if re.match('前五大', message):
-        replymessage = 'apple'
+        replymessage = top_five #
         line_bot_api.reply_message(event.reply_token, TextSendMessage(replymessage))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
