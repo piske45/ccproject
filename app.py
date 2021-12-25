@@ -41,12 +41,10 @@ def callback():
 from linebot.models import FlexSendMessage
 from linebot.models import TemplateSendMessage
 
-
-
-
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = text = event.message.text
+    fruit = {"aple": '20', 'orange': "30"}
     #推播前五大當沖股
     top_five = "apple"
     if re.match('前五大', message):
@@ -56,6 +54,9 @@ def handle_message(event):
         error_message = '不好意思'
         line_bot_api.reply_message(event.reply_token, TextSendMessage(error_message))
     
+    if message in fruit:
+        rep = 'ko'
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(rep))
     #推播新聞
     #if re.match('新聞', message):
 
