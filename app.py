@@ -47,21 +47,21 @@ from linebot.models import TemplateSendMessage
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = event.message.text
+    msg = event.message.text
     #前五大字典
     top_five = {"aple": '20', 'orange': "30"}
     #推播前五大當沖股
     top_five_pawn = "apple"
-    if re.match('前五大', message):
+    if re.match('前五大', msg):
         replymessage = top_five_pawn 
         line_bot_api.reply_message(event.reply_token, TextSendMessage(replymessage))
     #前五大相關新聞
-    elif message in top_five:
+    elif msg in top_five:
         message = Recipe_Template()
         line_bot_api.reply_message(event.reply_token, message)
     else:
-        messagee = Carousel_Template()
-        line_bot_api.reply_message(event.reply_tolen, messagee)
+        message = Carousel_Template()
+        line_bot_api.reply_message(event.reply_tolen, message)
 
 
     
