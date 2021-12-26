@@ -3,7 +3,6 @@
 #載入LineBot所需要的套件
 from typing import Text
 from ccClub.template import Carousel_Template, Recipe_Template
-from ccClub.test import FlexMessage
 from flask import Flask, request, abort
 # import requests
 from linebot import LineBotApi, WebhookHandler
@@ -41,9 +40,6 @@ def callback():
         os.abort(400)
 
     return 'OK'
-
-from linebot.models import FlexSendMessage
-from linebot.models import TemplateSendMessage
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
