@@ -23,6 +23,7 @@ import datetime
 import time
 #======python的函數庫==========
 import re
+import json
 
 app = Flask(__name__)
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
@@ -76,7 +77,8 @@ def handle_message(event):
         },
     ]         
     if re.match("前五大", msg):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage("昨日當沖熱門股: \n1.長榮\n2.萬海\n3.陽明\n4.聯電\n5.台積電"))
+        FlexMessage = json.load(open('style.json','r',encoding='utf-8'))
+        line_bot_api.reply_message(event.reply_token, FlexSendMessage('前五大',FlexMessage))
     elif re.match("長榮", msg):
         message = carousel_news()
         line_bot_api.reply_message(event.reply_token, message)
