@@ -23,14 +23,14 @@ import datetime
 import time
 #======python的函數庫==========
 import re
+import json
 
 app = Flask(__name__)
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 # Channel Access Token 
-#這行初始畫了一個 LineBotApi的物件，該物件有一個方法reply_message
+#這行初始化了一個 LineBotApi的物件，該物件有一個方法reply_message
 line_bot_api = LineBotApi('OxsptkqLALtCQH+hhPm+6an0EMha/JuvKM2Lx/e8jcLRsQmIz96qzPF7WgShwBhrWOLwDbmcjanacZ/SrtpbPDvXsBuAnXQvgtQh7O1IMUQgHv0x3pDbM3d05QvAsnQAKS7UmZhmd7JtrFA0uKA6OwdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
-# 必須放上自己的Channel Secret
 handler = WebhookHandler('141933d571faadf594a7b875a8ad6b5d')
 
 
@@ -75,7 +75,8 @@ def handle_message(event):
         },
     ]         
     if re.match("前五大", msg):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage("昨日當沖熱門股: \n1.長榮\n2.萬海\n3.陽明\n4.聯電\n5.台積電"))
+        FlexMessage = json.load(open('style.json','r',encoding='utf-8'))
+        line_bot_api.reply_message(event.reply_token, FlexSendMessage('前五大',FlexMessage))
     elif re.match("長榮", msg):
         message = carousel_news()
         line_bot_api.reply_message(event.reply_token, message)
