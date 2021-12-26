@@ -13,7 +13,7 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 import re
 import json
 
-app = Flask(__name__, template_folder='template')
+app = Flask(__name__)
 
 # 必須放上自己的Channel Access Token
 line_bot_api = LineBotApi('OxsptkqLALtCQH+hhPm+6an0EMha/JuvKM2Lx/e8jcLRsQmIz96qzPF7WgShwBhrWOLwDbmcjanacZ/SrtpbPDvXsBuAnXQvgtQh7O1IMUQgHv0x3pDbM3d05QvAsnQAKS7UmZhmd7JtrFA0uKA6OwdB04t89/1O/w1cDnyilFU=')
