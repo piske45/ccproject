@@ -30,13 +30,12 @@ app = Flask(__name__)
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 # Channel Access Token 
 #這行初始畫了一個 LineBotApi的物件，該物件有一個方法reply_message
-#彥伯的
-#line_bot_api = LineBotApi('2HpPsP97HX8RxipZZ3xq48amAwz6ZquRmepUjQx3m6UKp3DyMLpdXRen78e8fqND15An8ccGrvvDDT0BUl8vDq+efvtKkamWYg6HF1HoH3Te1NQS/rCbADxjsSb4risQtL8JvPyT2F/UptwMaG5SygdB04t89/1O/w1cDnyilFU=')
-line_bot_api = LineBotApi('Io6gQPcag33LY2Nusga5vxQs4Uh7VfkB1K6LRwiOxlCxGOjL4mmzV3gx1NXdSQpq0gGyw/GLtzuAveRCTmEYs2sEvOIfZp2UGC3pRslk7s/j+uh2DTiOlks8CeB1KZzL/RnTXiToNqLcXragQdsv7wdB04t89/1O/w1cDnyilFU=')
-# Channel Secret
-#handler = WebhookHandler('20e10d583baaa5e37c81fa47e7972b93')
-handler = WebhookHandler('6e28f7f4deebc6a496e80fe58336cce0')
+line_bot_api = LineBotApi('2HpPsP97HX8RxipZZ3xq48amAwz6ZquRmepUjQx3m6UKp3DyMLpdXRen78e8fqND15An8ccGrvvDDT0BUl8vDq+efvtKkamWYg6HF1HoH3Te1NQS/rCbADxjsSb4risQtL8JvPyT2F/UptwMaG5SygdB04t89/1O/w1cDnyilFU=')
 
+# Channel Secret
+handler = WebhookHandler('20e10d583baaa5e37c81fa47e7972b93')
+
+#佈署好自動推播訊息
 line_bot_api.push_message('Ua59fcce6ed5bf04270711fb56e4d8e5f', TextSendMessage(text ='你好'))
 
 # 監聽所有來自 /callback 的 Post Request
