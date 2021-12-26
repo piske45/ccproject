@@ -2,6 +2,7 @@
 
 #載入LineBot所需要的套件
 from typing import Text
+from ccClub.test import FlexMessage
 from flask import Flask, request, abort
 # import requests
 from linebot import LineBotApi, WebhookHandler
@@ -43,6 +44,151 @@ def callback():
 from linebot.models import FlexSendMessage
 from linebot.models import TemplateSendMessage
 
+def top_five_company():
+    flex_message = FlexSendMessage(
+        alt_text = "前五大當沖",
+        contents = {
+                    "type": "bubble",
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                        {
+                            "type": "text",
+                            "text": "昨日前五大當沖交易股",
+                            "weight": "bold",
+                            "size": "xl",
+                            "margin": "none"
+                        },
+                        {
+                            "type": "text",
+                            "text": "以及平均三日振福",
+                            "size": "lg",
+                            "color": "#000000",
+                            "wrap": True
+                        },
+                        {
+                            "type": "separator",
+                            "margin": "xxl"
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "margin": "xxl",
+                            "spacing": "sm",
+                            "contents": [
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "6485   點序",
+                                    "size": "md",
+                                    "color": "#555555",
+                                    "flex": 0
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "3.48",
+                                    "size": "md",
+                                    "color": "#111111",
+                                    "align": "end"
+                                }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "3169   亞信",
+                                    "size": "md",
+                                    "color": "#555555",
+                                    "flex": 0
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "3.84",
+                                    "size": "md",
+                                    "color": "#111111",
+                                    "align": "end"
+                                }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "2615   萬海",
+                                    "size": "md",
+                                    "color": "#555555"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "3.11",
+                                    "size": "md",
+                                    "color": "#111111",
+                                    "align": "end"
+                                }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "2609   陽明",
+                                    "size": "md",
+                                    "color": "#555555"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "2.29",
+                                    "size": "md",
+                                    "color": "#111111",
+                                    "align": "end"
+                                }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "5608  四維航",
+                                    "size": "md",
+                                    "color": "#555555"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "2.31",
+                                    "size": "md",
+                                    "color": "#111111",
+                                    "align": "end"
+                                }
+                                ]
+                            }
+                            ]
+                        }
+                        ]
+                    },
+                    "styles": {
+                        "footer": {
+                        "separator": False
+                        }
+                    }
+                    } )
+        
+    return flex_message
+    
+
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = text = event.message.text
@@ -60,144 +206,8 @@ def handle_message(event):
     
     else:
         #error_message = '不好意思'
-        error_message = TextMessage({
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "text",
-        "text": "昨日前五大當沖交易股",
-        "weight": "bold",
-        "size": "xl",
-        "margin": "none"
-      },
-      {
-        "type": "text",
-        "text": "以及平均三日振福",
-        "size": "lg",
-        "color": "#000000",
-        "wrap": True
-      },
-      {
-        "type": "separator",
-        "margin": "xxl"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "margin": "xxl",
-        "spacing": "sm",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "text",
-                "text": "6485   點序",
-                "size": "md",
-                "color": "#555555",
-                "flex": 0
-              },
-              {
-                "type": "text",
-                "text": "3.48",
-                "size": "md",
-                "color": "#111111",
-                "align": "end"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "text",
-                "text": "3169   亞信",
-                "size": "md",
-                "color": "#555555",
-                "flex": 0
-              },
-              {
-                "type": "text",
-                "text": "3.84",
-                "size": "md",
-                "color": "#111111",
-                "align": "end"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "text",
-                "text": "2615   萬海",
-                "size": "md",
-                "color": "#555555"
-              },
-              {
-                "type": "text",
-                "text": "3.11",
-                "size": "md",
-                "color": "#111111",
-                "align": "end"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "text",
-                "text": "2609   陽明",
-                "size": "md",
-                "color": "#555555"
-              },
-              {
-                "type": "text",
-                "text": "2.29",
-                "size": "md",
-                "color": "#111111",
-                "align": "end"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-              {
-                "type": "text",
-                "text": "5608  四維航",
-                "size": "md",
-                "color": "#555555"
-              },
-              {
-                "type": "text",
-                "text": "2.31",
-                "size": "md",
-                "color": "#111111",
-                "align": "end"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  "styles": {
-    "footer": {
-      "separator": False
-    }
-  }
-})
-        line_bot_api.reply_message(event.reply_tolen, TextSendMessage(error_message))
+        
+        line_bot_api.reply_message(event.reply_tolen, top_five_company())
             # 
             # line_bot_api.reply_message(event.reply_token, flex_message)    
     #推播新聞
