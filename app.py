@@ -205,11 +205,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(rep))
     
     else:
-        #error_message = '不好意思'
-        
         line_bot_api.reply_message(event.reply_tolen, top_five_company())
-            # 
-            # line_bot_api.reply_message(event.reply_token, flex_message)    
+
     #推播新聞
     
 #主程式
