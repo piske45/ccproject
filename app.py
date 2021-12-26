@@ -31,7 +31,9 @@ static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 #這行初始化了一個 LineBotApi的物件，該物件有一個方法reply_message
 line_bot_api = LineBotApi('Io6gQPcag33LY2Nusga5vxQs4Uh7VfkB1K6LRwiOxlCxGOjL4mmzV3gx1NXdSQpq0gGyw/GLtzuAveRCTmEYs2sEvOIfZp2UGC3pRslk7s/j+uh2DTiOlks8CeB1KZzL/RnTXiToNqLcXragQdsv7wdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
-handler = WebhookHandler('6e28f7f4deebc6a496e80fe58336cce0')
+handler = WebhookHandler('6e28f7f4deebc6a496e80fe58336cce03')
+#line部屬好主動推播訊息
+line_bot_api.push_message('Ua59fcce6ed5bf04270711fb56e4d8e5f', TextSendMessage(text='你可以開始了'))
 
 
 # 監聽所有來自 /callback 的 Post Request
