@@ -125,10 +125,9 @@ def handle_message(event):
     elif message in top_five:
         rep = 'ko'
         line_bot_api.reply_message(event.reply_token, TextSendMessage(rep))
-    
     else:
-        message = Carousel_Template()
-        line_bot_api.reply_message(event.reply_tolen, message)
+        messagee = Carousel_Template()
+        line_bot_api.reply_message(event.reply_tolen, messagee)
 
     #推播新聞
     
