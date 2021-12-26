@@ -80,8 +80,8 @@ def handle_message(event):
         },
     ]         
     if re.match("前五大", msg):
-        FlexMessage = json.load(open('style.json','r',encoding='utf-8'))
-        line_bot_api.reply_message(event.reply_token, FlexSendMessage(alt_text='前五大', contents = FlexMessage))
+        FlexMessage = json.load(open('style.json',"r", encoding="utf-8"))
+        line_bot_api.reply_message(event.reply_token, FlexSendMessage(alt_text="前五大", contents = FlexMessage))
     elif re.match("長榮", msg):
         message = carousel_news()
         line_bot_api.reply_message(event.reply_token, message)
