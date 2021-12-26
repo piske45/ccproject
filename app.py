@@ -43,7 +43,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    msg = event.message.text
+    msg =text = event.message.text
     #前五大字典
     top_five = {"aple": '20', 'orange': "30"}
     #推播前五大當沖股
