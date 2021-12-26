@@ -46,25 +46,162 @@ from linebot.models import TemplateSendMessage
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = text = event.message.text
+    #前五大字典
     top_five = {"aple": '20', 'orange': "30"}
     #推播前五大當沖股
     top_five_pawn = "apple"
     if re.match('前五大', message):
         replymessage = top_five_pawn 
         line_bot_api.reply_message(event.reply_token, TextSendMessage(replymessage))
+    #前五大相關新聞
     elif message in top_five:
         rep = 'ko'
         line_bot_api.reply_message(event.reply_token, TextSendMessage(rep))
+    
     else:
-        error_message = '不好意思'
+        #error_message = '不好意思'
+        error_message = TextMessage({
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "昨日前五大當沖交易股",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "none"
+      },
+      {
+        "type": "text",
+        "text": "以及平均三日振福",
+        "size": "lg",
+        "color": "#000000",
+        "wrap": True
+      },
+      {
+        "type": "separator",
+        "margin": "xxl"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "xxl",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "6485   點序",
+                "size": "md",
+                "color": "#555555",
+                "flex": 0
+              },
+              {
+                "type": "text",
+                "text": "3.48",
+                "size": "md",
+                "color": "#111111",
+                "align": "end"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "3169   亞信",
+                "size": "md",
+                "color": "#555555",
+                "flex": 0
+              },
+              {
+                "type": "text",
+                "text": "3.84",
+                "size": "md",
+                "color": "#111111",
+                "align": "end"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "2615   萬海",
+                "size": "md",
+                "color": "#555555"
+              },
+              {
+                "type": "text",
+                "text": "3.11",
+                "size": "md",
+                "color": "#111111",
+                "align": "end"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "2609   陽明",
+                "size": "md",
+                "color": "#555555"
+              },
+              {
+                "type": "text",
+                "text": "2.29",
+                "size": "md",
+                "color": "#111111",
+                "align": "end"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "5608  四維航",
+                "size": "md",
+                "color": "#555555"
+              },
+              {
+                "type": "text",
+                "text": "2.31",
+                "size": "md",
+                "color": "#111111",
+                "align": "end"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "styles": {
+    "footer": {
+      "separator": False
+    }
+  }
+})
         line_bot_api.reply_message(event.reply_tolen, TextSendMessage(error_message))
             # 
             # line_bot_api.reply_message(event.reply_token, flex_message)    
     #推播新聞
-    if re.match('新聞', message):
-        flex_message = json.load(open('style.json', 'r', encoding= 'utf-8'))
-        line_bot_api.reply_message(event.reply_token, flex_message)
-
+    
 #主程式
 import os
 if __name__ == "__main__":
