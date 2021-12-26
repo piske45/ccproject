@@ -53,10 +53,12 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(replymessage))
     #前五大相關新聞
     elif msg in top_five:
-        message = Recipe_Template()
+        # message = Recipe_Template()
+        message = "allpyfy"
         line_bot_api.reply_message(event.reply_token, message)
     else:
-        message = Carousel_Template()
+        # message = Carousel_Template()
+        message = "yjbk"
         line_bot_api.reply_message(event.reply_tolen, message)
 
 
